@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+
+<head>
+<meta charset="utf-8">
+<title>原神クイズゲーム</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="">
+<meta property="og:type" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <h1>原神　クイズ</h1>
+
+  <div id="q_1" class="fit">
+    <p>問題　:　原神で現在プレイできるキャラ数は？</p>
+    <ol>
+      <ul><button class="toi" id="toi1" href="#q_2" data-value="a">６４人</button></ul>
+      <ul><button class="toi" id="toi2" href="#q_2" data-value="b">５８人</button></ul>
+    </ol>
+  </div>
+
+  <div id="q_2" class="fit" style="display: none;">
+    <p>問題　:　神の目は現在何種類？</p>
+    <ol>
+      <ul><button class="toi" id="toi3" href="#q_3" data-value="a">７</button></ul>
+      <ul><button class="toi" id="toi4" href="#q_3" data-value="b">６</button></ul>
+    </ol>
+  </div>
+
+  <div id="q_3" class="fit" style="display: none;">
+    <p>問題　:　放浪者の出身地は？</p>
+    <ol>
+      <ul><button class="toi end" id="toi5" data-value="a">稲妻</button></ul>
+      <ul><button class="toi end" id="toi6" data-value="b">スメール</button></ul>
+    </ol>
+  </div>
+  <!-- ここ回答 -->
+  <div id="answer_01" class="result" style="display: none;">
+    <div class="result_theme ">
+      <p>あなたの原神理解力は原神オタク</p>
+    </div>
+    <div class="taip">
+      <h2>古参　or　ゲーマー</h2>
+      <p class="setu">
+        　今頃あなたは原石不足になっているでしょう。
+        でも大丈夫魔法のカードがあるから。
+      </p>
+    </div>
+  </div>
+
+  <!-- 回答の答え2 -->
+    <div id="answer_02" class="result" style="display: none;">
+        <div class="result_theme ">
+          <p>あなたの原神理解力は普通</p>
+        </div>
+        <div class="taip">
+          <h2>幅広くゲームをしているゲーマー</h2>
+          <p class="setu">
+            　あなたはストーリーを飛ばしながら物語を進めるタイプ。
+            とりあえず課金しましょう。
+          </p>
+        </div>
+    </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous">
+  </script>
+  <script>
+    $(function () {
+
+      $(".toi").on("click", function () {
+        $(this).closest("div").css("display", "none");
+        id = $(this).attr("href");
+        $(id).addClass("fit").fadeIn("slow").show();
+      });
+
+      let countA;
+      let countB;
+      let box =[];
+      $(".toi").each(function(){
+        $(this).on('click',function(){
+          let value = $(this).data("value");
+            box.push(value);
+
+          countA = box.filter(function(x){
+                        return x === "a"
+                      }).length;
+          countB = box.filter(function(y){
+                          return y === "b"
+                      }).length;
+        });
+      });
+
+
+      $('.end').on('click',function(){
+        if( countA > countB ) {
+          $('#answer_01').css("display","");
+          } else {
+            $('#answer_02').css("display","");
+        }
+      }); 
+
+    });
+  </script>
+</body>
+
+</html>
